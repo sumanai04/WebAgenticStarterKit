@@ -51,15 +51,8 @@ A tiny **LiteLLM proxy** sits in the middle, routing each request to the right m
 
 ## 🏗️ Architecture
 
-```mermaid
-graph TD
-    CLI[You: "Add a user authentication schema"] -->|Claude Code API call| Proxy[LiteLLM Proxy :4000]
-    Proxy -->|"File search / Grep"| Ollama["Ollama<br/>Gemma 3 4B (Local, free)"]
-    Proxy -->|"Code generation / Reasoning"| DeepSeek["DeepSeek API<br/>V4 Pro (Cloud)"]
-    Ollama -->|Result| Proxy
-    DeepSeek -->|Result| Proxy
-    Proxy -->|Unified response| CLI
-```
+
+![image of Agentic AI workflow](https://github.com/sumanai04/WebAgenticStarterKit/blob/main/architecture.png)
 
 **How it works in detail:**
 
