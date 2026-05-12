@@ -196,8 +196,9 @@ Open a new terminal window in the root directory. Point Claude Code to your loca
 
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:4000"
-export ANTHROPIC_API_KEY="litellm-dummy-token"
+export ANTHROPIC_API_KEY="sk-ant-api03-litellmdummykey1234567890"
 export CLAUDE_CODE_SUBAGENT_MODEL="claude-haiku-4-5-20251001"
+export ANTHROPIC_MODEL="claude-sonnet-4-5-20250929"
 claude
 
 ```
@@ -206,8 +207,9 @@ claude
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="http://localhost:4000"
-$env:ANTHROPIC_API_KEY="litellm-dummy-token"
+$env:ANTHROPIC_API_KEY="sk-ant-api03-litellmdummykey1234567890"
 $env:CLAUDE_CODE_SUBAGENT_MODEL="claude-haiku-4-5-20251001"
+$env:ANTHROPIC_MODEL="claude-sonnet-4-5-20250929"
 claude
 
 ```
