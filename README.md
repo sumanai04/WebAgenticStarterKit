@@ -141,10 +141,9 @@ Copy the secure environment template. **Never commit your `.env` file to GitHub.
 cp .env.example .env
 
 ```
+Open the newly created `.env` file and add your `DEEPSEEK_API_KEY` and your preferred database password.
 
 you could actually skip everything from this point straight to the Claude Setup
-
-Open the newly created `.env` file and add your `DEEPSEEK_API_KEY` and your preferred database password.
 
 ### 3. Spin Up the Database
 
