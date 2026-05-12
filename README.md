@@ -231,11 +231,3 @@ Because this is a decoupled architecture, you can prompt the AI to build feature
 ## ⚠️ Security Warning
 
 **Do not hardcode API keys into `litellm_config.yaml` or commit your `.env` file.** This template is explicitly designed to use local environment variables to keep your credentials secure. If you accidentally commit a live API key to a public repository, revoke it immediately via your AI provider's dashboard.
-
-## ⚖️ License
-
-This project is open-source and provided under the [MIT License](https://www.google.com/search?q=LICENSE) "as is", without warranty of any kind.
-
-```
-
-```
