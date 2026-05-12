@@ -1,4 +1,4 @@
-# ⚡ Agentic Web Starter Kit
+# Agentic Web Starter Kit
 
 <p align="center">
   <strong>Build full‑stack apps autonomously with AI agents – at a fraction of the cost.</strong>
@@ -20,7 +20,7 @@
 
 ---
 
-## 📖 Why this exists
+## Why this exists
 
 Coding agents like **Claude Code** are incredibly powerful – and incredibly expensive.  
 When you ask an agent to "find the bug in the auth flow", it often reads **thousands of lines of irrelevant code** just to build context, burning through your API credits at lightning speed.
@@ -36,7 +36,7 @@ A tiny **LiteLLM proxy** sits in the middle, routing each request to the right m
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
@@ -49,7 +49,7 @@ A tiny **LiteLLM proxy** sits in the middle, routing each request to the right m
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 
 ![image of Agentic AI workflow](https://github.com/sumanai04/WebAgenticStarterKit/blob/main/architecture.png)
@@ -65,7 +65,7 @@ A tiny **LiteLLM proxy** sits in the middle, routing each request to the right m
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 agentic-web-starter/
@@ -86,7 +86,7 @@ agentic-web-starter/
 
 ---
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 - [Node.js & npm](https://nodejs.org/)
 - [Docker Desktop](https://www.docker.com/) (for PostgreSQL)
@@ -97,7 +97,7 @@ agentic-web-starter/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone and install dependencies
 
@@ -193,7 +193,7 @@ Once the agent is running, try this prompt inside the Claude Code CLI:
 
 ---
 
-## ⚠️ Security Warning
+## Security Warning
 
 - **Never** hardcode API keys in `litellm_config.yaml` or commit your `.env` file.
 - The proxy reads `DEEPSEEK_API_KEY` from the environment – keep it there.
@@ -201,7 +201,7 @@ Once the agent is running, try this prompt inside the Claude Code CLI:
 
 ---
 
-## 🧯 Troubleshooting
+## Troubleshooting
 
 <details>
 <summary><strong>LiteLLM says “No models available”</strong></summary>
@@ -223,13 +223,9 @@ Verify that `ANTHROPIC_BASE_URL` is set and points to `http://localhost:4000` **
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!  
 If you have ideas to improve the proxy routing, add more examples, or support additional agents, please open an issue or submit a pull request.
 
 ---
-
-## ⚖️ License
-
-This project is licensed under the [MIT License](LICENSE) – use it freely, at your own risk.
