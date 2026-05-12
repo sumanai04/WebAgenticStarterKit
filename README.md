@@ -15,30 +15,17 @@
 <p align="center">
 
 &#x20; <img src="https://img.shields.io/badge/Claude\_Code-000?style=flat\&logo=anthropic\&logoColor=white" alt="Claude Code">
-
 &#x20; <img src="https://img.shields.io/badge/DeepSeek\_V4\_Pro-4D6FFF?style=flat\&logo=deepseek\&logoColor=white" alt="DeepSeek">
-
 &#x20; <img src="https://img.shields.io/badge/Ollama\_(Gemma)-000000?style=flat\&logo=ollama\&logoColor=white" alt="Ollama">
-
 &#x20; <img src="https://img.shields.io/badge/Next.js-000000?style=flat\&logo=next.js\&logoColor=white" alt="Next.js">
-
 &#x20; <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat\&logo=postgresql\&logoColor=white" alt="PostgreSQL">
-
 &#x20; <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat\&logo=prisma\&logoColor=white" alt="Prisma">
-
 &#x20; <img src="https://img.shields.io/badge/LiteLLM-FF6C37?style=flat" alt="LiteLLM">
-
 &#x20; <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
-
 </p>
 
 
-
-\---
-
-
-
-\## 📖 What Is This?
+\📖 What Is This?
 
 
 
@@ -62,7 +49,7 @@ You get the architectural genius of DeepSeek without paying for the brute-force 
 
 
 
-\## ✨ Features
+\✨ Features
 
 
 
@@ -86,7 +73,7 @@ You get the architectural genius of DeepSeek without paying for the brute-force 
 
 
 
-\## 🏗️ Architecture Flowchart
+\🏗️ Architecture Flowchart
 
 
 
@@ -138,7 +125,7 @@ You type: "Add a user authentication schema"
 
 
 
-\## 📂 Project Structure
+\📂 Project Structure
 
 
 
@@ -182,7 +169,7 @@ agentic-web-starter/
 
 
 
-\## 🛠️ Prerequisites
+\🛠️ Prerequisites
 
 
 
@@ -206,7 +193,7 @@ Ensure you have the following installed on your machine before starting:
 
 
 
-\## 🚀 Quick Start Guide
+\🚀 Quick Start Guide
 
 
 
@@ -422,7 +409,7 @@ Once the agent is running in your terminal, simply tell it what to build. Try pa
 
 
 
-\## ⚠️ Security Warning
+\⚠️ Security Warning
 
 
 
@@ -430,7 +417,7 @@ Once the agent is running in your terminal, simply tell it what to build. Try pa
 
 
 
-\## ⚖️ License
+\⚖️ License
 
 
 
