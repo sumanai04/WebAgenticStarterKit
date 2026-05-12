@@ -1,0 +1,35 @@
+model_list:
+  # ---------------------------------------------------------
+  # MAIN MODELS (What you type in the terminal)
+  # ---------------------------------------------------------
+  - model_name: deepseek-v4-pro
+    litellm_params:
+      model: anthropic/deepseek-v4-pro
+      api_base: https://api.deepseek.com/anthropic
+      api_key: sk-6821623e0e71480bb27096075c432e40
+      drop_params: True
+
+  - model_name: free-reader-model
+    litellm_params:
+      model: ollama/gemma3:4b
+      api_base: http://localhost:11434
+      drop_params: True
+
+  # ---------------------------------------------------------
+  # ALIAS CATCHERS (To intercept Claude Code's hardcoded requests)
+  # ---------------------------------------------------------
+  
+  # When Claude Code explicitly asks for Sonnet, route it to DeepSeek
+  - model_name: claude-sonnet-4-5-20250929
+    litellm_params:
+      model: anthropic/deepseek-v4-pro
+      api_base: https://api.deepseek.com/anthropic
+      api_key: sk-6821623e0e71480bb27096075c432e40
+      drop_params: True
+
+  # When Claude Code explicitly asks for Haiku (the subagent), route it to Gemma
+  - model_name: claude-haiku-4-5-20251001
+    litellm_params:
+      model: ollama/gemma3:4b
+      api_base: http://localhost:11434
+      drop_params: True

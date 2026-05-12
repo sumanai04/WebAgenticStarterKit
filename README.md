@@ -1,231 +1,241 @@
-# Agentic Web Starter Kit
+---
+# ⚡ Agentic Web Starter Kit
 
 <p align="center">
-  <strong>Build full‑stack apps autonomously with AI agents – at a fraction of the cost.</strong>
-  <br>
-  <em>Free local models handle file reading. DeepSeek handles reasoning. You keep the tokens.</em>
+  <em>A highly optimized, dual-agent starter kit for building full-stack web apps autonomously.</em><br>
+  Stop wasting millions of API tokens on AI file-searching. <strong>Use free local models for reading, and DeepSeek for reasoning.</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Agent-Dual_Layer-blueviolet?style=flat" alt="dual agent" />
-  <img src="https://img.shields.io/badge/Claude_Code-000?style=flat&logo=anthropic&logoColor=white" alt="Claude Code" />
-  <img src="https://img.shields.io/badge/DeepSeek_V4_Pro-4D6FFF?style=flat&logo=deepseek&logoColor=white" alt="DeepSeek" />
-  <img src="https://img.shields.io/badge/Ollama_(Gemma)-000000?style=flat&logo=ollama&logoColor=white" alt="Ollama" />
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white" alt="Prisma" />
-  <img src="https://img.shields.io/badge/LiteLLM-FF6C37?style=flat" alt="LiteLLM" />
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT" />
+  <img src="https://img.shields.io/badge/Claude_Code-000?style=flat&logo=anthropic&logoColor=white" alt="Claude Code">
+  <img src="https://img.shields.io/badge/DeepSeek_V4_Pro-4D6FFF?style=flat&logo=deepseek&logoColor=white" alt="DeepSeek">
+  <img src="https://img.shields.io/badge/Ollama_(Gemma)-000000?style=flat&logo=ollama&logoColor=white" alt="Ollama">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/LiteLLM-FF6C37?style=flat" alt="LiteLLM">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
 </p>
 
 ---
 
-## Why this exists
+## 📖 What Is This?
 
-Coding agents like **Claude Code** are incredibly powerful – and incredibly expensive.  
-When you ask an agent to "find the bug in the auth flow", it often reads **thousands of lines of irrelevant code** just to build context, burning through your API credits at lightning speed.
+This is a boilerplate template designed specifically to be manipulated by **AI Coding Agents** (like Claude Code). 
 
-This starter kit solves the problem with a **Dual‑Agent Proxy Architecture**:
+By default, agentic CLIs are incredibly expensive. If you ask an agent to "find the bug in the auth flow," it will often read thousands of lines of irrelevant code to build context, burning through your API credits. 
 
-- **Expensive reasoning** (writing code, planning architecture) → **DeepSeek V4 Pro**
-- **Cheap scanning** (grep, file reading, documentation lookups) → **free local Gemma 3 4B via Ollama**
+This starter kit solves that using a **Dual-Agent Proxy Architecture**. It uses a local `LiteLLM` traffic cop to intercept the agent's requests:
+1. **The Thinker (Coding & Logic):** All code generation is routed to **DeepSeek V4 Pro** (via Anthropic-compatible endpoints).
+2. **The Reader (File Searching):** All background tasks (grepping, searching directories, reading docs) are routed to a free, local **Gemma 3 4B** model running on your GPU via Ollama. 
 
-A tiny **LiteLLM proxy** sits in the middle, routing each request to the right model – so you get the full intelligence of a coding agent without paying for brute‑force file searches.
+You get the architectural genius of DeepSeek without paying for the brute-force file scanning.
 
-> **Typical savings:** 60‑80% fewer billable tokens for large codebase tasks.
-
----
-
-## Features
+## ✨ Features
 
 | Feature | Description |
 |---------|-------------|
-| **Intelligent Routing** | LiteLLM config automatically routes heavy coding to DeepSeek, light reading to local Ollama |
-| **Context Gating** | Ultra‑compact `CLAUDE.md` (under 50 lines) prevents the agent from drowning in unnecessary context |
-| **Pre‑configured Database** | `docker-compose.yml` for instant local PostgreSQL with persistent storage |
-| **Token Protection** | Aggressive `.gitignore` keeps binaries, datasets, and secrets out of the agent’s view |
-| **Modern Stack** | Next.js (App Router) + Tailwind CSS + Prisma ORM, ready for production |
-| **Security‑first** | All API keys remain in local environment variables – never committed |
+| **Dual-Agent Routing** | Built-in LiteLLM config routes `claude-sonnet` to DeepSeek and `claude-haiku` to local Ollama. |
+| **Progressive Disclosure** | `CLAUDE.md` is optimized under 50 lines to strictly gatekeep the context window. |
+| **Decoupled Stack** | Next.js (App Router) for the frontend, Python FastAPI + SQLModel for the backend. |
+| **Token-Protected** | Aggressive `.gitignore` rules prevent agents from hallucinating on `node_modules` or Python `.venv` folders. |
+| **Pre-configured DB** | Ready-to-go `docker-compose.yml` for instant PostgreSQL provisioning. |
 
 ---
 
-## Architecture
+## 🏗️ Architecture Flowchart
 
-
-![image of Agentic AI workflow](https://github.com/sumanai04/WebAgenticStarterKit/blob/main/architecture.png)
-
-**How it works in detail:**
-
-1. Claude Code sends *every* model request to `http://localhost:4000` (the LiteLLM proxy)
-2. The proxy inspects the task type using the model name hint:
-   - `claude-haiku` → local Ollama (cheap reading)
-   - `claude-sonnet` → DeepSeek (expensive coding)
-3. DeepSeek and Ollama respond via Anthropic‑compatible API formats
-4. Claude Code never knows the difference – it just works™
-
----
-
-## Project Structure
+```text
+You type: "Add a user authentication schema"
+        │
+        ▼
+┌──────────────────────┐
+│ Claude Code CLI      │ (Thinks it's talking to Anthropic)
+└───────┬──────────────┘
+        │
+┌───────▼──────────────┐
+│ LiteLLM Proxy (:4000)│ (The Traffic Cop)
+└───────┬───────┬──────┘
+        │       │
+    If Reading  If Coding
+        │       │
+┌───────▼─┐   ┌─▼──────────────────┐
+│ Ollama  │   │ DeepSeek API       │
+│ Gemma 3 │   │ V4 Pro             │
+│ (Local) │   │ (Cloud)            │
+└─────────┘   └────────────────────┘
 
 ```
+
+---
+
+## 📂 Project Structure
+
+```text
 agentic-web-starter/
-├── docs/                  # Agent’s knowledge base (Gemma reads on demand)
-│   ├── architecture.md    # Next.js + Prisma conventions
-│   └── db_schema.md       # DB tables and relationships
+├── docs/
+│   ├── architecture.md         # Explains the decoupled Next.js/FastAPI stack
+│   └── api_specs.md            # The API contract between frontend and backend
 ├── src/
-│   ├── app/               # Next.js App Router pages & API routes
-│   └── components/        # React UI components
+│   ├── frontend/               # Next.js app (React, Tailwind)
+│   │   ├── package.json
+│   │   └── ...
+│   └── backend/                # FastAPI app (Python, SQLModel, ML pipelines)
+│       ├── requirements.txt
+│       ├── main.py
+│       └── models/             
 ├── ops/
-│   └── docker-compose.yml # PostgreSQL container
-├── .env.example           # Safe environment template
-├── .gitignore             # Strict exclusions
-├── CLAUDE.md              # Global rules for Claude Code
-├── litellm_config.yaml    # Proxy routing configuration
-└── package.json
+│   └── docker-compose.yml      # Local PostgreSQL database setup
+├── .env.example                # Safe environment variables template
+├── .gitignore                  # Token saver (Ignores JS and Python build files)
+├── CLAUDE.md                   # Global rules for Claude Code
+└── litellm_config.yaml         # The proxy router configuration
+
 ```
 
 ---
 
-## Prerequisites
+## 🛠️ Prerequisites
 
-- [Node.js & npm](https://nodejs.org/)
-- [Docker Desktop](https://www.docker.com/) (for PostgreSQL)
-- [Python 3 & pip](https://www.python.org/) (for LiteLLM proxy)
-- [Ollama](https://ollama.com/) (local model runtime)
-- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/overview)  
-  `npm install -g @anthropic-ai/claude-code`
+Ensure you have the following installed on your machine before starting:
+
+1. **[Node.js](https://nodejs.org/) & npm**
+2. **[Python 3.10+](https://www.python.org/) & pip**
+3. **[Docker Desktop](https://www.docker.com/)** (for spinning up PostgreSQL)
+4. **[Ollama](https://ollama.com/)** (for the local background reader)
+5. **[Claude Code CLI](https://www.google.com/search?q=https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)** (Install via: `npm install -g @anthropic-ai/claude-code`)
 
 ---
 
-## Quick Start
+## 🚀 Quick Start Guide
 
-### 1. Clone and install dependencies
+Follow these steps exactly to get the dual-agent environment and split-stack running safely on your machine.
+
+### 1. Clone & Setup Environments
 
 ```bash
-git clone https://github.com/yourusername/agentic-web-starter.git
+git clone [https://github.com/yourusername/agentic-web-starter.git](https://github.com/yourusername/agentic-web-starter.git)
 cd agentic-web-starter
+
+# Setup Frontend
+cd src/frontend
 npm install
+cd ../..
+
+# Setup Backend (Python Virtual Environment)
+cd src/backend
+python -m venv .venv
+# On Windows: .venv\Scripts\activate
+# On Mac/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+cd ../..
+
 ```
 
-### 2. Set up environment variables
+### 2. Configure API Keys & Environment Variables
+
+Copy the secure environment template. **Never commit your `.env` file to GitHub.**
 
 ```bash
 cp .env.example .env
+
 ```
 
-Open `.env` and add your **DeepSeek API key** and a database password.
+Open the newly created `.env` file and add your `DEEPSEEK_API_KEY` and your preferred database password.
 
-### 3. Start the database
+### 3. Spin Up the Database
+
+Start the local PostgreSQL container in the background.
 
 ```bash
 cd ops
-docker compose up -d
+docker-compose up -d
 cd ..
+
 ```
 
-### 4. Pull the local reader model
+### 4. Initialize the Free Local Reader (Ollama)
+
+Ensure the required Gemma 3 model is downloaded to your machine. Ollama will manage the GPU memory automatically.
 
 ```bash
 ollama pull gemma3:4b
+
 ```
 
-### 5. Launch the AI proxy (Terminal 1)
+### 5. Start the AI Proxy Traffic Cop (Terminal 1)
 
-<details>
-<summary><strong>Mac / Linux</strong></summary>
+Install LiteLLM and run it in the background. This server will route the agent's traffic based on the `litellm_config.yaml` file.
+
+**For Mac/Linux:**
 
 ```bash
 pip install litellm
 export DEEPSEEK_API_KEY="your-api-key-here"
 litellm --config litellm_config.yaml --port 4000
-```
-</details>
 
-<details>
-<summary><strong>Windows PowerShell</strong></summary>
+```
+
+**For Windows (PowerShell):**
 
 ```powershell
 pip install litellm
 $env:DEEPSEEK_API_KEY="your-api-key-here"
 litellm --config litellm_config.yaml --port 4000
+
 ```
-</details>
 
-**Keep this terminal running.**
+*(Keep this terminal open and running!)*
 
-### 6. Start Claude Code (Terminal 2)
+### 6. Launch Claude Code (Terminal 2)
 
-<details>
-<summary><strong>Mac / Linux</strong></summary>
+Open a new terminal window in the root directory. Point Claude Code to your local LiteLLM proxy and start building.
+
+**For Mac/Linux:**
 
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:4000"
 export ANTHROPIC_API_KEY="litellm-dummy-token"
 export CLAUDE_CODE_SUBAGENT_MODEL="claude-haiku-4-5-20251001"
 claude
-```
-</details>
 
-<details>
-<summary><strong>Windows PowerShell</strong></summary>
+```
+
+**For Windows (PowerShell):**
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="http://localhost:4000"
 $env:ANTHROPIC_API_KEY="litellm-dummy-token"
 $env:CLAUDE_CODE_SUBAGENT_MODEL="claude-haiku-4-5-20251001"
 claude
+
 ```
-</details>
 
 ---
 
-## 💻 Usage example
+## 💻 Usage Example
 
-Once the agent is running, try this prompt inside the Claude Code CLI:
+Because this is a decoupled architecture, you can prompt the AI to build features that span across both languages seamlessly. Try pasting this into the Claude Code CLI:
 
-> *"Initialize Prisma in the `src` folder, connect it to the PostgreSQL database defined in `.env`, and create a User model with email and password. After that, update `/docs/db_schema.md` with the new schema."*
+> *"Create a new FastAPI endpoint in `/src/backend` for uploading medical images for DeepLabV3 segmentation. Then, go to `/src/frontend`, build a Next.js upload form using Tailwind, and connect it to that new Python endpoint. Update `/docs/api_specs.md` with the new route details."*
 
-**What happens behind the scenes:**
+**What happens next:**
 
-1. Claude Code asks the proxy to locate `.env` – routed to **Gemma 3 4B** (free)
-2. Claude Code asks the proxy to generate the schema – routed to **DeepSeek V4 Pro**
-3. You pay only for the hard part.
-
----
-
-## Security Warning
-
-- **Never** hardcode API keys in `litellm_config.yaml` or commit your `.env` file.
-- The proxy reads `DEEPSEEK_API_KEY` from the environment – keep it there.
-- If a live key is accidentally exposed, revoke it immediately in your provider’s dashboard.
+1. Claude Code asks the proxy to read `/docs/api_specs.md`.
+2. LiteLLM routes the reading task to your local **Gemma 3 4B** model (cost: $0).
+3. Once the context is loaded, LiteLLM routes the Python and React code generation to **DeepSeek V4 Pro**.
 
 ---
 
-## Troubleshooting
+## ⚠️ Security Warning
 
-<details>
-<summary><strong>LiteLLM says “No models available”</strong></summary>
+**Do not hardcode API keys into `litellm_config.yaml` or commit your `.env` file.** This template is explicitly designed to use local environment variables to keep your credentials secure. If you accidentally commit a live API key to a public repository, revoke it immediately via your AI provider's dashboard.
 
-Make sure the `litellm_config.yaml` points to valid model names and that your `DEEPSEEK_API_KEY` is exported.
-</details>
+## ⚖️ License
 
-<details>
-<summary><strong>Ollama can’t find Gemma 3 4B</strong></summary>
+This project is open-source and provided under the [MIT License](https://www.google.com/search?q=LICENSE) "as is", without warranty of any kind.
 
-Pull the model first: `ollama pull gemma3:4b`. Check with `ollama list`.
-</details>
+```
 
-<details>
-<summary><strong>Claude Code ignores the proxy</strong></summary>
-
-Verify that `ANTHROPIC_BASE_URL` is set and points to `http://localhost:4000` **before** launching `claude`.
-</details>
-
----
-
-## Contributing
-
-Contributions are welcome!  
-If you have ideas to improve the proxy routing, add more examples, or support additional agents, please open an issue or submit a pull request.
-
----
+```
