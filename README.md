@@ -1,9 +1,3 @@
-\---
-
-
-
-```markdown
-
 \# ⚡ Agentic Web Starter Kit
 
 
