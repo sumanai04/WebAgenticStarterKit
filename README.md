@@ -142,6 +142,8 @@ cp .env.example .env
 
 ```
 
+you could actually skip everything from this point straight to the Claude Setup
+
 Open the newly created `.env` file and add your `DEEPSEEK_API_KEY` and your preferred database password.
 
 ### 3. Spin Up the Database
